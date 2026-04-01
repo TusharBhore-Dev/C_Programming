@@ -6,9 +6,8 @@
         
         Accept how many element user want to store
         Accept the elements from the user
-        check each element from first element
-        calculate the frequency of odd number  
-        Display the frequency of odd numbers
+        Add all the elements and divide the sum by total elements
+        Display the average
 
     STOP
 
@@ -25,36 +24,39 @@
 
 /////////////////////////////////////////////////////////////////
 //
-//  Function Name : CalcFrequencyOfOdd
-//  Description :   It is used to display the count of odd        
+//  Function Name : CalcAverage()
+//  Description :   It is used to calculate the average.     
 //  Input :         int , int *Arr
-//  Output :        int
+//  Output :        float
 //  Author :        Tushar Vikas Bhore.
-//  Date :          26/03/2026
+//  Date :          01/04/2026
 //
 /////////////////////////////////////////////////////////////////
 
 // const is used for not to lose the actual values 
-int CalcFrequencyOfOdd( int iLimit , const int Brr[] )
+float CalcAverage( int iLimit , const int Brr[] )
 {
 
-    int iCnt = 0 , iCountFreq = 0;
+    int iCnt = 0 , iSum = 0;
+    float fAverage = 0.0f;
 
-    for( iCnt = 0; iCnt < iLimit; iCnt++ )
+    //  Business Logic.
+    iCnt = 0;
+    while(  iCnt < iLimit  )
     {
 
-        if( ( Brr[ iCnt ] % 2 ) != 0 )
-        {
-
-            iCountFreq++;
-
-        }
+        iSum = iSum + Brr[ iCnt ];
+        
+        iCnt++;
 
     }
 
-    return iCountFreq;
+    //  Calculating the average.
+    fAverage = iSum / iLimit;
+    
+    return fAverage;
 
-}   // End of CalcFrequencyOfOdd
+}   // End of CalcAverage
 
 
 /////////////////////////////////////////////////////////////////
@@ -66,7 +68,11 @@ int CalcFrequencyOfOdd( int iLimit , const int Brr[] )
 int main()
 {
 
-    int iSize = 0, iRet = 0 , iCnt = 0;
+    int iSize = 0 , iCnt = 0;
+
+    // float for storing ans with decimal
+    float fRet = 0.0f;
+
     int *Arr = NULL;
 
     printf( "Enter how many elements you want to store :\t" );
@@ -96,7 +102,8 @@ int main()
 
     printf( "Enter the elements : \n\n" );
 
-    for( iCnt = 0; iCnt < iSize; iCnt++ )
+    iCnt = 0;
+    while( iCnt < iSize  )
     {
 
         printf( "Enter the element number %d : " , ( iCnt + 1 ) );
@@ -105,11 +112,13 @@ int main()
 
         printf( "\n" );
 
+        iCnt++;
+
     }
 
-    iRet = CalcFrequencyOfOdd( iSize , Arr );
+    fRet = CalcAverage( iSize , Arr );
 
-    printf( "The frequency of the odd numbers is : %d.\n" ,iRet );
+    printf( "The Average of the numbers is : %f.\n" ,fRet );
 
     //  Deallocate Memory
     free( Arr );
@@ -123,36 +132,39 @@ int main()
 //  Testcase succesfully handaled by the application
 //
 //  TestCase 1 : 
-//
-//   Enter how many elements you want to store :     10
-//   Enter the elements :
-//
-//   Enter the element number 1 : 52
-//
-//   Enter the element number 2 : 25
-//
-//   Enter the element number 3 : 46
-//
-//   Enter the element number 4 : 84
-//
-//   Enter the element number 5 : 58
-//
-//   Enter the element number 6 : 85
-//
-//   Enter the element number 7 : 95
-//
-//   Enter the element number 8 : 69
-//
-//   Enter the element number 9 : 56
-//
-//   Enter the element number 10 : 85
-//
-//   The frequency of the odd numbers is : 5.
-//
-//  TestCase 2 :
-//  
-//  Enter how many elements you want to store :     -6
-//  Error : Please enter the valid input range.
-//
+                //Enter how many elements you want to store :     5
+                // Enter the elements :
+
+                // Enter the element number 1 : 10
+
+                // Enter the element number 2 : 10
+
+                // Enter the element number 3 : 10
+
+                // Enter the element number 4 : 10
+
+                // Enter the element number 5 : 10
+
+                // The Average of the numbers is : 10.000000.
+
+// //  TestCase 2 : 
+
+                // Enter how many elements you want to store :     6
+                // Enter the elements :
+
+                // Enter the element number 1 : 30
+
+                // Enter the element number 2 : 30
+
+                // Enter the element number 3 : 30
+
+                // Enter the element number 4 : 30
+
+                // Enter the element number 5 : 30
+
+                // Enter the element number 6 : 30
+
+                // The Average of the numbers is : 30.000000.
+
 /////////////////////////////////////////////////////////////////
 

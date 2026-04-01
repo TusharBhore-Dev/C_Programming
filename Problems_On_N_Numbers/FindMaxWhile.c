@@ -1,17 +1,13 @@
 /*
-
     Algorithm
 
     START
-        
         Accept how many element user want to store
         Accept the elements from the user
         check each element from first element
-        calculate the frequency of odd number  
-        Display the frequency of odd numbers
-
+        Strore the maximum element 
+        Display the max element
     STOP
-
 */
 
 /////////////////////////////////////////////////////////////////
@@ -25,8 +21,8 @@
 
 /////////////////////////////////////////////////////////////////
 //
-//  Function Name : CalcFrequencyOfOdd
-//  Description :   It is used to display the count of odd        
+//  Function Name : FindMaxiMumElement
+//  Description :   It is used to display the maximum element of array         
 //  Input :         int , int *Arr
 //  Output :        int
 //  Author :        Tushar Vikas Bhore.
@@ -35,26 +31,34 @@
 /////////////////////////////////////////////////////////////////
 
 // const is used for not to lose the actual values 
-int CalcFrequencyOfOdd( int iLimit , const int Brr[] )
+int FindMaxiMumElement( int iLimit , const int Brr[] )
 {
 
-    int iCnt = 0 , iCountFreq = 0;
+    int iMax = 0 , iCnt = 0;
 
-    for( iCnt = 0; iCnt < iLimit; iCnt++ )
+    iMax = Brr[0];
+
+    //  Counter will start from second element
+    
+    //  Business Logic.
+    iCnt = 1; 
+    while( iCnt < iLimit )
     {
 
-        if( ( Brr[ iCnt ] % 2 ) != 0 )
+        if( iMax < Brr[ iCnt ] )
         {
 
-            iCountFreq++;
+            iMax = Brr[ iCnt ];
 
         }
 
+        iCnt++;
+
     }
 
-    return iCountFreq;
+    return iMax;
 
-}   // End of CalcFrequencyOfOdd
+}   // End of FindMaxiMumElement
 
 
 /////////////////////////////////////////////////////////////////
@@ -66,7 +70,7 @@ int CalcFrequencyOfOdd( int iLimit , const int Brr[] )
 int main()
 {
 
-    int iSize = 0, iRet = 0 , iCnt = 0;
+    int iSize = 0 , iRet = 0 , iCnt = 0;
     int *Arr = NULL;
 
     printf( "Enter how many elements you want to store :\t" );
@@ -76,13 +80,12 @@ int main()
     if( iSize <= 0 )
     {
 
-        printf( "Error : Please enter the valid input range.\n" );
-
+        printf( "Error : Please enter the positive and non zero limit only.\n" );
         return -1;
 
     }
 
-    //  Memory allocation
+    // used *Arr so that if we wanna change the array type it will be easy
     Arr = ( int * ) malloc ( iSize * sizeof( *Arr ) );
 
     if( Arr == NULL )
@@ -96,7 +99,8 @@ int main()
 
     printf( "Enter the elements : \n\n" );
 
-    for( iCnt = 0; iCnt < iSize; iCnt++ )
+    iCnt = 0;
+    while( iCnt < iSize )
     {
 
         printf( "Enter the element number %d : " , ( iCnt + 1 ) );
@@ -105,13 +109,15 @@ int main()
 
         printf( "\n" );
 
+        iCnt++;
+
     }
 
-    iRet = CalcFrequencyOfOdd( iSize , Arr );
+    iRet = FindMaxiMumElement( iSize , Arr );
+    
+    printf( "The maximum element is : %d.\n" ,iRet );
 
-    printf( "The frequency of the odd numbers is : %d.\n" ,iRet );
-
-    //  Deallocate Memory
+    //  Memory Deallocation.
     free( Arr );
 
     return 0;
@@ -121,38 +127,17 @@ int main()
 /////////////////////////////////////////////////////////////////
 //
 //  Testcase succesfully handaled by the application
+//      
+//      Enter how many elements you want to store : 5
+//      Enter the elements :
 //
-//  TestCase 1 : 
 //
-//   Enter how many elements you want to store :     10
-//   Enter the elements :
+//      Enter the element number 1 : 10 
+//      Enter the element number 2 : 20
+//      Enter the element number 3 : 30 
+//      Enter the element number 4 : 40
+//      Enter the element number 5 : 50
 //
-//   Enter the element number 1 : 52
-//
-//   Enter the element number 2 : 25
-//
-//   Enter the element number 3 : 46
-//
-//   Enter the element number 4 : 84
-//
-//   Enter the element number 5 : 58
-//
-//   Enter the element number 6 : 85
-//
-//   Enter the element number 7 : 95
-//
-//   Enter the element number 8 : 69
-//
-//   Enter the element number 9 : 56
-//
-//   Enter the element number 10 : 85
-//
-//   The frequency of the odd numbers is : 5.
-//
-//  TestCase 2 :
+//      The maximum element is : 50.
 //  
-//  Enter how many elements you want to store :     -6
-//  Error : Please enter the valid input range.
-//
 /////////////////////////////////////////////////////////////////
-

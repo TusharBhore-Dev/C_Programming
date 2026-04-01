@@ -6,9 +6,10 @@
         
         Accept how many element user want to store
         Accept the elements from the user
+        Accept the number to count its frequency
         check each element from first element
-        calculate the frequency of odd number  
-        Display the frequency of odd numbers
+        calculate the frequency of entered number  
+        Display the frequency of that element
 
     STOP
 
@@ -25,9 +26,9 @@
 
 /////////////////////////////////////////////////////////////////
 //
-//  Function Name : CalcFrequencyOfOdd
-//  Description :   It is used to display the count of odd        
-//  Input :         int , int *Arr
+//  Function Name : FindMaxiMumElement
+//  Description :   It is used to calculate the frequency of number        
+//  Input :         int , int, int *Arr
 //  Output :        int
 //  Author :        Tushar Vikas Bhore.
 //  Date :          26/03/2026
@@ -35,26 +36,30 @@
 /////////////////////////////////////////////////////////////////
 
 // const is used for not to lose the actual values 
-int CalcFrequencyOfOdd( int iLimit , const int Brr[] )
+int CalcFrequency( int iLimit , int iTrgt , const int Brr[] )
 {
 
-    int iCnt = 0 , iCountFreq = 0;
+    int iCnt = 0 , iFreq = 0;
 
-    for( iCnt = 0; iCnt < iLimit; iCnt++ )
+    //  Business Logic
+    iCnt = 0; 
+    while( iCnt < iLimit  )
     {
 
-        if( ( Brr[ iCnt ] % 2 ) != 0 )
+        if( Brr[ iCnt ] == iTrgt )
         {
 
-            iCountFreq++;
+            iFreq++;
 
         }
 
+        iCnt++;
+
     }
 
-    return iCountFreq;
+    return iFreq;
 
-}   // End of CalcFrequencyOfOdd
+}   // End of CalcFrequency
 
 
 /////////////////////////////////////////////////////////////////
@@ -66,11 +71,14 @@ int CalcFrequencyOfOdd( int iLimit , const int Brr[] )
 int main()
 {
 
-    int iSize = 0, iRet = 0 , iCnt = 0;
+    int iSize = 0 , iTarget = 0 , iRet = 0 , iCnt = 0;
     int *Arr = NULL;
 
     printf( "Enter how many elements you want to store :\t" );
     scanf( "%d" ,&iSize );
+
+    printf( "Enter the number to find its frequency :\t" );
+    scanf( "%d" , &iTarget );
 
     //  input validation
     if( iSize <= 0 )
@@ -96,7 +104,8 @@ int main()
 
     printf( "Enter the elements : \n\n" );
 
-    for( iCnt = 0; iCnt < iSize; iCnt++ )
+    iCnt = 0;
+    while( iCnt < iSize )
     {
 
         printf( "Enter the element number %d : " , ( iCnt + 1 ) );
@@ -104,12 +113,13 @@ int main()
         scanf( "%d" , &Arr[iCnt] );
 
         printf( "\n" );
+        iCnt++;
 
     }
 
-    iRet = CalcFrequencyOfOdd( iSize , Arr );
+    iRet = CalcFrequency( iSize , iTarget , Arr );
 
-    printf( "The frequency of the odd numbers is : %d.\n" ,iRet );
+    printf( "The frequency of the number %d is : %d.\n" ,iTarget ,iRet );
 
     //  Deallocate Memory
     free( Arr );
@@ -122,37 +132,52 @@ int main()
 //
 //  Testcase succesfully handaled by the application
 //
-//  TestCase 1 : 
+//      TestCase  : 1
+//      
 //
-//   Enter how many elements you want to store :     10
-//   Enter the elements :
+//      Enter how many elements you want to store :     10
+//      Enter the number to find its frequency :        21
+//      Enter the elements :
 //
-//   Enter the element number 1 : 52
+//      Enter the element number 1 : 11
 //
-//   Enter the element number 2 : 25
+//      Enter the element number 2 : 21
 //
-//   Enter the element number 3 : 46
+//      Enter the element number 3 : 51
 //
-//   Enter the element number 4 : 84
+//      Enter the element number 4 : 12
 //
-//   Enter the element number 5 : 58
+//      Enter the element number 5 : 21
 //
-//   Enter the element number 6 : 85
+//      Enter the element number 6 : 21
 //
-//   Enter the element number 7 : 95
+//      Enter the element number 7 : 101
 //
-//   Enter the element number 8 : 69
+//      Enter the element number 8 : 141
 //
-//   Enter the element number 9 : 56
+//      Enter the element number 9 : 21
 //
-//   Enter the element number 10 : 85
+//      Enter the element number 10 : 12
+//      The frequency of the number 21 is : 4.
 //
-//   The frequency of the odd numbers is : 5.
+//      
+//      TestCase : 2
+//    
+//      Enter how many elements you want to store :     5
+//      Enter the number to find its frequency :        3
+//      Enter the elements :
 //
-//  TestCase 2 :
-//  
-//  Enter how many elements you want to store :     -6
-//  Error : Please enter the valid input range.
+//      Enter the element number 1 : 45
+//
+//      Enter the element number 2 : 5
+//
+//      Enter the element number 3 : 5
+//
+//      Enter the element number 4 : 5
+//
+//      Enter the element number 5 : 55
+//
+//      The frequency of the number 3 is : 0.
 //
 /////////////////////////////////////////////////////////////////
 

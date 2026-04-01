@@ -30,7 +30,7 @@
 //  Input :         int , int *Arr
 //  Output :        int
 //  Author :        Tushar Vikas Bhore.
-//  Date :          26/03/2026
+//  Date :          01/042026
 //
 /////////////////////////////////////////////////////////////////
 
@@ -40,7 +40,10 @@ int CalcFrequencyOfOdd( int iLimit , const int Brr[] )
 
     int iCnt = 0 , iCountFreq = 0;
 
-    for( iCnt = 0; iCnt < iLimit; iCnt++ )
+    //  Business Logic.
+
+    iCnt = 0;
+    while( iCnt < iLimit )
     {
 
         if( ( Brr[ iCnt ] % 2 ) != 0 )
@@ -49,6 +52,8 @@ int CalcFrequencyOfOdd( int iLimit , const int Brr[] )
             iCountFreq++;
 
         }
+
+        iCnt++;
 
     }
 
@@ -96,7 +101,8 @@ int main()
 
     printf( "Enter the elements : \n\n" );
 
-    for( iCnt = 0; iCnt < iSize; iCnt++ )
+    iCnt = 0;
+    while( iCnt < iSize  )
     {
 
         printf( "Enter the element number %d : " , ( iCnt + 1 ) );
@@ -104,6 +110,8 @@ int main()
         scanf( "%d" , &Arr[iCnt] );
 
         printf( "\n" );
+
+        iCnt++;
 
     }
 
